@@ -1,0 +1,36 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <h2><%= @title %></h2>
+    <table class='table'>
+      <thead>
+        <tr>
+          <th>image</th>
+          <th>name</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= attachment_image_tag(user, :profile_image, :fill, 50, 50, fallback: "no-image-icon.jpg") %></td>
+            <td><%= user.name %></td>
+            <td>フォロー数:<%= user.following.count %></td>
+            <td>フォロワー数:<%= user.followers.count %></td>
+            <td>
+              <%# まずは対象者"user"が自分自身でないか確認する %>
+              <% if user != current_user %>
+                <div id="follow_form">
+                <% if current_user.following?(user) %>
+                  <%= render 'users/unfollow', user: user %>
+                <% else %>
+                  <%= render 'users/follow', user: user  %>
+                <% end %>
+              <% end %>
+            </td>
+            <td><%= link_to 'Show', user_path(user), class: "user_#{user.id}" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

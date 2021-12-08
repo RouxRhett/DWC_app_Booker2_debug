@@ -22,4 +22,22 @@ class User < ApplicationRecord
 
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true
   validates :introduction, length: {maximum: 50}
+
+  #ユーザーをフォローする
+  def follow(other_user)
+    #followingの最後にother_userを追加？
+    following << other_user
+  end
+
+  #ユーザーをフォロー解除する
+  def unfollow(other_user)
+    #active_relationshipsからfollowed_idがother_user.idのデータを取得して削除
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  #現在のユーザーがフォローしてたらtrueを返す
+  def following?(other_user)
+    # followingにother_userが含まれているか
+    following.include?(other_user)
+  end
 end
