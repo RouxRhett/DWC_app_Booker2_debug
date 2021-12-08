@@ -56,7 +56,7 @@
           <% end %>
         </tr>
       </table>
-      <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
+      <%= form_with model:[@book, @post_comment], local:true do |f| %>
       <div class="form-group">
         <%= f.text_area :comment,class: 'form-control post_comment' %>
       </div>
