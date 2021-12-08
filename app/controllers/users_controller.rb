@@ -25,6 +25,22 @@ class UsersController < ApplicationController
     end
   end
 
+  def following
+    @title = 'Follow Users'
+    # @userにDBから取得したparams[:id]のuserを代入
+    @user  = User.find(params[:id])
+    @users = @user.following
+    render 'show_follow'
+  end
+
+  def followers
+    @title = 'Follower Users'
+    # @userにDBから取得したparams[:id]のuserを代入
+    @user  = User.find(params[:id])
+    @users = @user.followers
+    render 'show_follow'
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :introduction, :profile_image)
