@@ -22,4 +22,14 @@
       </div>
     </div>
   </nav>
+  <div class='container px-5 px-sm-0'>
+    <% if user_signed_in? %>
+      <%= form_with url: search_path, class:'form-inline', method: :get, local: true do |f|%>
+        <%= f.text_field :content, class:'form-control', placeholder: "検索" %>
+        <%= f.select :model, {'User': 'user', 'Book': 'book'}, {}, { class: 'form-control' , value: @select_model } %>
+        <%= f.select :method, {'完全一致': 'perfect', '前方一致': 'prefix', '後方一致': 'backward', '部分一致': 'partial'}, {}, {class: 'form-control', value: @select_conditions } %>
+        <%= f.submit value: "検索", class: "btn btn-primary"%>
+      <% end %>
+    <% end %>
+  </div>
 </header>
