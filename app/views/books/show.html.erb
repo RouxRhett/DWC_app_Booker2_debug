@@ -29,26 +29,10 @@
           <% end %>
         </tr>
       </table>
-      <table class='table'>
-        <% @book.post_comments.each do |book_comment| %>
-          <tr>
-            <td><%= link_to user_path(book_comment.user) do %>
-              <%= attachment_image_tag(book_comment.user, :profile_image, :fill, 100, 100, fallback: "no-image-icon.jpg") %><br>
-              <%= book_comment.user.name %>
-              <% end %>
-            </td>
-            <td>
-              <%= book_comment.comment %>
-            </td>
-            <td>
-              <% if book_comment.user == current_user %>
-              <td><%= link_to 'Destroy', book_post_comment_path(book_comment.book_id,book_comment), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_book_#{book_comment.id}"%></td>
-              <% end %>
-            </td>
-          <% end %>
-        </tr>
+      <table class='table book_comment_index'>
+        <%= render 'post_comments/post_comments', book: @book %>
       </table>
-      <%= form_with model:[@book, @post_comment], local:true do |f| %>
+      <%= form_with model:[@book, @post_comment] do |f| %>
       <div class="form-group">
         <%= f.text_area :comment,class: 'form-control post_comment' %>
       </div>
