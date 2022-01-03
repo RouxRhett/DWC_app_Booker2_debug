@@ -23,7 +23,7 @@
           <td class='book_comment_num'>
             <%= render 'post_comments/post_comments_num', book: @book %>
           </td>
-          <td colspan="3" id="stars-<%= @book.id %>">
+          <td id="stars-<%= @book.id %>">
           </td>
           <% if @book.user == current_user %>
             <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success edit_book_#{@book.id}" %></td>
