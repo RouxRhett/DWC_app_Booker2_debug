@@ -1,0 +1,13 @@
+<div id="stars-<%= book.id %>">
+</div>
+<script>
+  $('#stars-<%= book.id %>').empty();
+  $('#stars-<%= book.id %>').raty({
+    readOnly: true,
+    half: true,
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    score: "<%= book.grade_evalution %>"
+  });
+</script>

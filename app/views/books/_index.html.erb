@@ -19,23 +19,13 @@
         <td class="favorite-btn_<%= book.id %>">
           <%= render 'favorites/favorite-btn', book: book %>
         </td>
-        <td id="stars-<%= book.id %>">
+        <td>
+          <%= render 'books/grade-evalution', book: book %>
         </td>
         <td>
           コメント数:<%= book.post_comments.count %>
         </td>
       </tr>
-      <script>
-        $('#stars-<%= book.id %>').empty();
-        $('#stars-<%= book.id %>').raty({
-          readOnly: true,
-          half: true,
-          starOn: "<%= asset_path('star-on.png') %>",
-          starOff: "<%= asset_path('star-off.png') %>",
-          starHalf: "<%= asset_path('star-half.png') %>",
-          score: "<%= book.grade_evalution %>"
-        });
-      </script>
     <% end %>
   </tbody>
 </table>
