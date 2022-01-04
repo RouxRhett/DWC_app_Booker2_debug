@@ -8,7 +8,11 @@ class BooksController < ApplicationController
   end
 
   def index
-    @books = Book.all
+    if params[:sort_update]
+      @books = Book.highrate
+    else
+      @books = Book.latest
+    end
     @book = Book.new
   end
 
@@ -29,8 +33,6 @@ class BooksController < ApplicationController
       redirect_to books_path
     end 
   end
-
-
 
   def update
     @book = Book.find(params[:id])
