@@ -10,6 +10,7 @@ class Book < ApplicationRecord
 	validates :title, presence: true
 	validates :body, presence: true, length: {maximum: 200}
 
+	#ソート用のスコープ
 	scope :latest, -> {order(created_at: :desc)}
 	scope :highrate, -> {order(grade_evalution: :desc)}
 end
