@@ -18,7 +18,7 @@
         </td>
         <td><%= link_to book.title, book_path(book), class: "book_#{book.id}" %></td>
         <td><%= book.body %></td>
-        <% if book.category%>
+        <% if book.category %>
           <td><%= link_to book.category, cat_search_path(link_cat: book.category),class: "book_#{book.category}" %></td>
         <% else %>
           <td></td>
