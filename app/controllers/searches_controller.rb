@@ -10,6 +10,12 @@ class SearchesController < ApplicationController
     @records = search_for(@model, @content, @method)
   end
 
+  def cat_search
+    #検索内容
+    @category = params[:category]
+    redirect_to books_path(cat_search: "true", category: @category)
+  end
+
   #このクラスでしか利用しない為、privateにする
   private
   def search_for(model, content, method)

@@ -11,7 +11,12 @@ class BooksController < ApplicationController
     if params[:sort_update]
       @books = Book.highrate
     else
-      @books = Book.latest
+      if params[:cat_search] && params[:category] != ""
+        category = params[:category]
+        @books = Book.where(category: category)
+      else
+        @books = Book.latest
+      end
     end
     @book = Book.new
   end
