@@ -12,7 +12,11 @@ class SearchesController < ApplicationController
 
   def cat_search
     #検索内容
-    @category = params[:category]
+    if params[:link_cat]
+      @category = params[:link_cat]
+    else
+      @category = params[:category]
+    end
     redirect_to books_path(cat_search: "true", category: @category)
   end
 
